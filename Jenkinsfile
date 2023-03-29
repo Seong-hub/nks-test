@@ -8,25 +8,24 @@ pipeline {
 	        }
 
 
-	stage("Build Microservice image") {
-		steps {                 
-			script {
-				try {
-				appImage = docker.build("lalll5555/nks-test")
-				} catch (e) {sh "echo docker build fail"}
-				docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-ID') {
-					try {
-				               appImage.push("${env.BUILD_NUMBER}")
-				                      appImage.push("latest")
-					} catch (e) { sh 'echo docker push fail'}
-				}
-            		}                                                 
-        	}
-	}
+//	stage("Build Microservice image") {
+//		steps {                 
+//			script {
+//				try {
+//				appImage = docker.build("lalll5555/nks-test")
+//				} catch (e) {sh "echo docker build fail"}
+//				docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-ID') {
+//					try {
+//				               appImage.push("${env.BUILD_NUMBER}")
+//				                      appImage.push("latest")
+//					} catch (e) { sh 'echo docker push fail'}
+//				}
+//            		}                                                 
+//        	}
+//	}
         stage("Deployment list check") {
             steps {
-//		sh "kubectl get deployments.apps -A --kubeconfig=/home/jenkins/kubeconfig.yaml"
-		sh "echo $HOME"
+		sh "kubectl get deployments.apps -A"
             }
         }
 }
