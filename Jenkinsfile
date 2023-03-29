@@ -25,7 +25,8 @@ pipeline {
 	}
         stage("Deployment list check") {
             steps {
-		sh "kubectl get deployments.apps -A --kubeconfig=/home/jenkins/kubeconfig.yaml"
+//		sh "kubectl get deployments.apps -A --kubeconfig=/home/jenkins/kubeconfig.yaml"
+		sh "echo $HOME"
             }
         }
 }
