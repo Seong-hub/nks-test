@@ -1,5 +1,5 @@
 pipeline {
-	agent any {
+	agent any
 	stages {
 		stage("Get Source") {
 			steps {
@@ -28,6 +28,5 @@ pipeline {
 			sh "kubectl get deployments.apps -A"
 		}       
 	}
-}
 }
 }
