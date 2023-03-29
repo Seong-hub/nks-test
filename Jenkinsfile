@@ -25,7 +25,8 @@ pipeline {
 	}
 	stage( "depolyment list check" ) {
 		steps {
-			sh "kubectl get deployments.apps -A"
+//			sh "kubectl get deployments.apps -A"
+			sh "ls -al"
 		}       
 	}
 }
