@@ -33,10 +33,10 @@ pipeline {
 			sh "$HOME/bin/ncp-iam-authenticator help"
 		}
 	}
-//        stage("Deployment list check") {
-//            steps {
-//		sh "kubectl get deployments.apps -A"
-//            }
-//        }
+        stage("Deployment list check") {
+            steps {
+		sh "kubectl get deployments.apps -A"
+            }
+        }
 }
 }
