@@ -30,7 +30,7 @@ pipeline {
 			sh "chmod +x ./ncp-iam-authenticator"
 			sh "mkdir -p $HOME/bin && cp ./ncp-iam-authenticator $HOME/bin/ncp-iam-authenticator && export PATH=$PATH:$HOME/bin"
 			sh "echo 'export PATH=$PATH:$HOME/bin' >> ~/.bash_profile"
-			sh "./bin/ncp-iam-authenticator help"
+			sh "$HOME/bin/ncp-iam-authenticator help"
 		}
 	}
 //        stage("Deployment list check") {
