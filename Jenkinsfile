@@ -33,9 +33,8 @@ pipeline {
 
         stage("Deployment list check") {
             steps {
-//               sh "kubectl get deployments.apps -A --kubeconfig=/root/kubeconfig.yaml"
-		sh "hostname -f"
-		sh "kubectl get nodes"
+//               sh "kubectl get deployments.apps -A --kubeconfig=./kubeconfig.yaml"
+		sh "pwd"
             }
         }
 }
