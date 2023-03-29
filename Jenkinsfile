@@ -30,13 +30,13 @@ pipeline {
 			sh "chmod +x ./ncp-iam-authenticator"
 			sh "mkdir -p $HOME/bin && cp ./ncp-iam-authenticator $HOME/bin/ncp-iam-authenticator && export PATH=$PATH:$HOME/bin"
 			sh "echo 'export PATH=$PATH:$HOME/bin' >> ~/.bash_profile"
-			sh "ncp-iam-authenticator help"
+			sh "./bin/ncp-iam-authenticator help"
 		}
 	}
-        stage("Deployment list check") {
-            steps {
-		sh "kubectl get deployments.apps -A"
-            }
-        }
+//        stage("Deployment list check") {
+//            steps {
+//		sh "kubectl get deployments.apps -A"
+//            }
+//        }
 }
 }
