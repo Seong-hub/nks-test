@@ -25,9 +25,7 @@ pipeline {
 	}
 	stage( "depolyment list check" ) {
 		steps {
-//			sh "kubectl --kubeconfig=/root/kubeconfig.yaml get deployments.apps -A"
-			sh "ls -al"
-			sh "pwd"
+			sh "kubectl --kubeconfig=/root/kubeconfig.yaml get deployments.apps -A"
 		}       
 	}
 }
