@@ -35,7 +35,7 @@ pipeline {
             steps {
 //               sh "kubectl get deployments.apps -A --kubeconfig=/root/kubeconfig.yaml"
 		sh "hostname -f"
-		sh "kubectl -h"
+		sh "kubectl get nodes"
             }
         }
 }
