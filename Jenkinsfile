@@ -27,6 +27,7 @@ pipeline {
 		steps {
 //			sh "kubectl get deployments.apps -A"
 			sh "ls -al"
+			sh "pwd"
 		}       
 	}
 }
