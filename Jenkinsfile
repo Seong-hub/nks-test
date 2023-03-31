@@ -12,7 +12,7 @@ pipeline {
 		steps {                 
 			script {
 				try {
-				appImage = docker.build("lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test")
+				appImage = docker.build("https://lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test")
 				} catch (e) {sh "echo docker build fail"}
 				docker.withRegistry('docker login lsb-nks-test-cr.kr.ncr.ntruss.com', 'nks-cr-ID') {
 					try {
