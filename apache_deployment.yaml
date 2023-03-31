@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apache-depolyment
-  namespace: apache
+  name: nks-test-depolyment
+  namespace: nks-test
 spec:
   selector:
     matchLabels:
-      app: apache
+      app: nks-test
   replicas: 1
   template:
     metadata:
@@ -14,9 +14,9 @@ spec:
         app: apache
     spec:
       containers:
-      - image: lalll5555/apache:latest
+      - image: lalll5555/nks-test:latest
         imagePullPolicy: Always
-        name: apache
+        name: nks-test
         ports:
         - containerPort: 80
 
@@ -25,8 +25,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: apache-service
-  namespace: apache
+  name: nks-test-service
+  namespace: nks-test
 spec:
   ports:
   - port: 80
@@ -34,33 +34,4 @@ spec:
     protocol: TCP
   selector:
     app: apache
-  type: NodePort
-
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: apache-ingress
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    kubernetes.io/tls-acme: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-
-spec:
-  tls:
-  - hosts:
-    - apache.leesb.kro.kr
-    secretName: apache.leesb.kro.kr-tls
-  rules:
-    - host: apache.leesb.kro.kr
-      http:
-        paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: apache-service
-              port:
-                number: 80
+  type: LoadBalancer
