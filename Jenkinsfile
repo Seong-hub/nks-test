@@ -13,20 +13,35 @@ pipeline {
 	        environment {
 			nks_cr_cred = credentials('nks-cr-ID')
 		}
-		steps {         
-        
+	stage("Build Microservice image") {
+		steps {                 
 			script {
 				try {
+				appImage = docker.build("lalll5555/nks-test")
+				} catch (e) {sh "echo ########################docker build fail#################################"}
+					docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-ID') {
+					try {
+				               appImage.push("${env.BUILD_NUMBER}")
+			                       appImage.push("latest")
+					} catch (e) { sh 'echo ###########################docker push fail###############################'
+					}
+                	      	}
+			}                                                                                
+              }
+      	}
+//		steps {                 
+//			script {
+//				try {
 //				appImage = docker.build("lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:'${env.BUILD_NUMBER}'")
-				appImage = docker.build("lalll5555/nks-test'")
-				} catch (e) {sh "echo ####################docker build fail#######################"}
+//				appImage = docker.build("lalll5555/nks-test'")
+//				} catch (e) {sh "echo ####################docker build fail#######################"}
 //				sh "docker login -u '$nks_cr_cred_USR' -p '$nks_cr_cred_PSW' lsb-nks-test-cr.kr.ncr.ntruss.com"
-				sh "docker push lalll5555/nks-test:'${env.BUILD_NUMBER}'"
+//				sh "docker push lalll5555/nks-test:'${env.BUILD_NUMBER}'"
 //				sh "docker push lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:'${env.BUILD_NUMBER}'"
 //				sh "docker push lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:latest"
-				}
-			}
-	}                                                 
+//				}
+//			}
+//	}                                                 
 
 //	stage("Make ncp-iam-authenticator") {
 //		steps {
