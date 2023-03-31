@@ -11,7 +11,7 @@ pipeline {
 	stage("Build && PUSH Microservice image") {
 		// Credential 연동
 	        environment {
-			nks-cr-cred = credentials('nks-cr-ID')
+			nks_cr_cred = credentials('nks-cr-ID')
 		}
 		steps {         
         
@@ -19,7 +19,7 @@ pipeline {
 				try {
 				appImage = docker.build("lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test")
 				} catch (e) {sh "echo docker build fail"}
-				sh "docker login -u '$nks-cr-cred_USR' -p '$nks-cr-cred_PSW' lsb-nks-test-cr.kr.ncr.ntruss.com"
+				sh "docker login -u '$nks_cr_cred_USR' -p '$nks_cr_cred_PSW' lsb-nks-test-cr.kr.ncr.ntruss.com"
 				sh "docker push lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:'${env.BUILD_NUMBER}'"
 				sh "docker push lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:latest"
 				}
