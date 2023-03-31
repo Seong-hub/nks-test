@@ -12,12 +12,12 @@ pipeline {
 		steps {                 
 			script {
 				try {
-				appImage = docker.build("lalll5555/nks-test")
+				appImage = docker.build("lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test")
 				} catch (e) {sh "echo docker build fail"}
-				docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-ID') {
+				docker.withRegistry('docker login lsb-nks-test-cr.kr.ncr.ntruss.com', 'nks-cr-ID') {
 					try {
 				               appImage.push("${env.BUILD_NUMBER}")
-				                      appImage.push("latest")
+				               appImage.push("latest")
 					} catch (e) { sh 'echo docker push fail'}
 				}
             		}                                                 
