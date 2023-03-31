@@ -13,14 +13,13 @@ pipeline {
                 steps {
                         script {
                                 try {
-                                appImage = docker.build("lalll5555/nks-test")
+				appImage = docker.build("lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test")
                                 } catch (e) {sh "echo ########################docker build fail#################################"}
-                                        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-ID') {
+                                sh "docker login -u '$nks_cr_cred_USR' -p '$nks_cr_cred_PSW' lsb-nks-test-cr.kr.ncr.ntruss.com"
                                         try {
-                                               appImage.push("${env.BUILD_NUMBER}")
+                                               appImage.push("lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:'${env.BUILD_NUMBER}'")
                                                appImage.push("latest")
                                         } catch (e) { sh 'echo ###########################docker push fail###############################'}
-                                        }
                                 }
                 }
 	}
