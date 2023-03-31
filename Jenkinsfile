@@ -17,7 +17,7 @@ pipeline {
         
 			script {
 				try {
-				appImage = docker.build("lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test")
+				appImage = docker.build("lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:'${env.BUILD_NUMBER}'")
 				} catch (e) {sh "echo docker build fail"}
 				sh "docker login -u '$nks_cr_cred_USR' -p '$nks_cr_cred_PSW' lsb-nks-test-cr.kr.ncr.ntruss.com"
 //				sh "docker push lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:'${env.BUILD_NUMBER}'"
