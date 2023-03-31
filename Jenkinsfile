@@ -14,11 +14,10 @@ pipeline {
 				try {
 				appImage = docker.build("lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test")
 				} catch (e) {sh "echo docker build fail"}
-				docker.withRegistry('docker login https://lsb-nks-test-cr.kr.ncr.ntruss.com', 'nks-cr-ID') {
-					try {
-				               appImage.push("${env.BUILD_NUMBER}")
-				               appImage.push("latest")
-					} catch (e) { sh 'echo docker push fail'}
+				sh "docker login url: 'lsb-nks-test-cr.kr.ncr.ntruss.com',  credentialsId: 'nks-cr-ID'"
+				sh "docker push lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:'${env.BUILD_NUMBER}'"
+				sh "docker push lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:latest"
+				}
 				}
             		}                                                 
         	}
