@@ -13,6 +13,7 @@ pipeline {
 	        environment {
 			nks_cr_cred = credentials('nks-cr-ID')
 		}
+	}
 	stage("Build Microservice image") {
 		steps {                 
 			script {
@@ -23,12 +24,12 @@ pipeline {
 					try {
 				               appImage.push("${env.BUILD_NUMBER}")
 			                       appImage.push("latest")
-					} catch (e) { sh 'echo ###########################docker push fail###############################'
+					} catch (e) { sh 'echo ###########################docker push fail###############################'}
 					}
                 	      	}
-			}                                                                                
-              }
-      	}
+		}                                                                                
+        }
+      	
 //		steps {                 
 //			script {
 //				try {
