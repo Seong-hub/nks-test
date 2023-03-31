@@ -18,10 +18,8 @@ pipeline {
 				sh "docker push lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:'${env.BUILD_NUMBER}'"
 				sh "docker push lsb-nks-test-cr.kr.ncr.ntruss.com/nks-test:latest"
 				}
-				}
-            		}                                                 
-        	}
-	}
+			}
+	}                                                 
 
 //	stage("Make ncp-iam-authenticator") {
 //		steps {
